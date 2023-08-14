@@ -1,0 +1,23 @@
+<ng-container *ngIf="(currencies | async) as currencies1">
+  <div class="container">
+    <div><b>Forex Calculator</b></div>
+    <div>
+      <form [formGroup]="forms">
+        <select formControlName="buy" id="">
+          <option *ngFor="let currency of currencies1" [value]="currency.value"> {{currency.key}}</option>
+        </select>
+        <input formControlName="buyValue" type="text">
+        <!-- <hr> -->
+        <br>
+        <select formControlName="sell" name="" id="">
+          <option *ngFor="let currency of currencies1" [value]="currency.value"> {{currency.key}}</option>
+        </select>
+        <input formControlName="sellValue" type="text">
+      </form>
+    </div>
+    <div *ngIf="valueToConvert && convertedValue">
+      <small> {{1 | currency:valueToConvert}} = {{convertedValueAmount |
+        currency:convertedValue:'symbol':'.1-10'}}</small>
+    </div>
+  </div>
+</ng-container>
